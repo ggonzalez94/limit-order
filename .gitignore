@@ -1,0 +1,41 @@
+# package directories
+node_modules
+lib
+
+# hardhat
+artifacts
+cache
+deployments
+typechain
+
+#defender
+.defender/
+.serverless/
+secrets.*.yml
+
+# coverage directory used by tools like istanbul
+coverage
+coverage.json
+coverageEnv
+
+
+# Other
+.secrets/*
+*.key
+*.csr
+*.log
+.DS_Store
+tsconfig.tsbuildinfo
+abi/@openzeppelin
+abi/contracts
+
+.vscode
+
+#openzeppelin upgrades plugin localhost json file(https://github.com/OpenZeppelin/openzeppelin-upgrades)
+**/.openzeppelin/*.json
+
+#typechain - https://github.com/dethcrypto/TypeChain#q-should-i-commit-generated-files-to-my-repository
+types/**
+
+#rollup - https://stackoverflow.com/questions/47186472/do-you-have-commit-webpack-generated-files
+dist/
