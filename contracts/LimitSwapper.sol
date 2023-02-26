@@ -38,7 +38,7 @@ contract LimitSwapper is ILimitSwapper {
         address destinationToken,
         address receiver,
         uint256 amountOfSourceToken,
-        uint256 price
+        uint256 amountOfDestinationToken
     ) external returns (uint256 orderId) {
         // validate that we accept the source and destination tokens
         if (!_allowedSourceTokens[sourceToken]) {
@@ -60,7 +60,7 @@ contract LimitSwapper is ILimitSwapper {
             msg.sender,
             receiver,
             amountOfSourceToken,
-            price
+            amountOfDestinationToken
         );
 
         // emit orderCreated event
@@ -71,7 +71,7 @@ contract LimitSwapper is ILimitSwapper {
             msg.sender,
             receiver,
             amountOfSourceToken,
-            price
+            amountOfDestinationToken
         );
 
         // increment orderId counter
@@ -90,6 +90,10 @@ contract LimitSwapper is ILimitSwapper {
 
         _orders[orderId].status = Status.Canceled;
         emit OrderCanceled(orderId);
+    }
+
+    function getOrder(uint256 orderId) external view returns (Order memory) {
+        return _orders[orderId];
     }
 
     // function getActiveOrders() external view returns(Order memory) {
