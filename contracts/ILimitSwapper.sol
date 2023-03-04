@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 enum Status {
-    Created,
+    Active,
     Filled,
     Canceled
 }
@@ -29,11 +29,25 @@ interface ILimitSwapper {
 
     event OrderCanceled(uint256 orderId);
 
+    event OrderFilled(
+        uint256 orderId,
+        address sourceToken,
+        address destinationToken,
+        address maker,
+        address receiver,
+        address executor,
+        uint256 amountOfSourceToken,
+        uint256 amountOfDestinationToken
+    );
+
     error LimitSwapperInvalidSourceToken(address token);
     error LimitSwapperInvalidDestinationToken(address token);
     error LimitSwapperOrderFilled(uint256 orderId);
     error LimitSwapperOrderNotExists(uint256 orderId);
     error LimitSwapperOnlyMaker(uint256 orderId);
+    error LimitSwapperOrderIsNotActive(uint256 orderId);
+    error LimitSwapperERC20TransferFromFailed();
+    error LimitSwapperERC20IncreaseAllowanceFailed();
 
     function createLimitOrder(
         address sourceToken,
@@ -43,7 +57,7 @@ interface ILimitSwapper {
         uint256 amountOfDestinationToken
     ) external returns (uint256 orderId);
 
-    function executeLimitOrder(uint256 orderId) external;
+    function executeLimitOrder(uint256 orderId) external returns (uint256);
 
     function cancelLimitOrder(uint256 orderId) external;
 

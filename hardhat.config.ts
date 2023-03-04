@@ -1,5 +1,4 @@
-import '@nomicfoundation/hardhat-chai-matchers';
-import '@typechain/hardhat';
+import '@nomicfoundation/hardhat-toolbox';
 import 'hardhat-contract-sizer';
 import '@openzeppelin/hardhat-upgrades';
 import * as dotenv from 'dotenv';
@@ -41,6 +40,9 @@ export default {
             runs: 200,
           },
         },
+      },
+      {
+        version: '0.7.6',
       },
     ],
   },
