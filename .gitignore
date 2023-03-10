@@ -28,6 +28,7 @@ coverageEnv
 tsconfig.tsbuildinfo
 abi/@openzeppelin
 abi/contracts
+.env
 
 .vscode
 
