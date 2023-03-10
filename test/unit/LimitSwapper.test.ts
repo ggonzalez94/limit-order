@@ -15,18 +15,18 @@ const ORDER_CANCELED = 2;
 describe('LimitSwapper', function () {
   async function deployLimitSwapperFixture() {
     // deploy mocks
-    const [signer1, signer2] = await ethers.getSigners();
-    const mockUsdc = await deployMockContract(signer1, ERC20.abi);
-    const mockWeth = await deployMockContract(signer1, ERC20.abi);
-    const mockUsdt = await deployMockContract(signer1, ERC20.abi);
-    const mockSwapRouter = await deployMockContract(signer1, ISwapRouter.abi);
+    const [owner, signer2] = await ethers.getSigners();
+    const mockUsdc = await deployMockContract(owner, ERC20.abi);
+    const mockWeth = await deployMockContract(owner, ERC20.abi);
+    const mockUsdt = await deployMockContract(owner, ERC20.abi);
+    const mockSwapRouter = await deployMockContract(owner, ISwapRouter.abi);
     const LimitSwapper = await ethers.getContractFactory('LimitSwapper');
 
     const args = [[mockUsdc.address], [mockWeth.address], mockSwapRouter.address];
     const limitSwapper = (await upgrades.deployProxy(LimitSwapper, args)) as ILimitSwapper;
     await limitSwapper.deployed();
 
-    return { limitSwapper, signer1, signer2, mockUsdc, mockUsdt, mockWeth, mockSwapRouter };
+    return { limitSwapper, signer1: owner, signer2, mockUsdc, mockUsdt, mockWeth, mockSwapRouter };
   }
 
   describe('Create Limit Order', function () {
@@ -289,6 +289,124 @@ describe('LimitSwapper', function () {
         limitSwapper,
         'LimitSwapperERC20TransferFromFailed',
       );
+    });
+  });
+
+  describe('Add Allowed Source Token', function () {
+    it('reverts if not owner', async () => {
+      const { limitSwapper, signer2, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.connect(signer2).addAllowedSourceToken(mockUsdt.address)).to.be.revertedWith(
+        'Ownable: caller is not the owner',
+      );
+    });
+    it('emits SourceTokenAllowed event when new token is added', async () => {
+      const { limitSwapper, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.addAllowedSourceToken(mockUsdt.address)).to.emit(limitSwapper, 'SourceTokenAllowed');
+    });
+    it('does not emit SourceTokenAllowed event when token is already allowed', async () => {
+      const { limitSwapper, mockUsdc } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.addAllowedSourceToken(mockUsdc.address)).not.to.emit(
+        limitSwapper,
+        'SourceTokenAllowed',
+      );
+    });
+    it('adds a new token successfully', async () => {
+      const { limitSwapper, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      const tx = await limitSwapper.addAllowedSourceToken(mockUsdt.address);
+      await tx.wait();
+      const isAllowed = await limitSwapper.isSourceTokenAllowed(mockUsdt.address);
+      expect(isAllowed).to.be.true;
+    });
+  });
+
+  describe('Add Allowed Destination Token', function () {
+    it('reverts if not owner', async () => {
+      const { limitSwapper, signer2, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.connect(signer2).addAllowedDestinationToken(mockUsdt.address)).to.be.revertedWith(
+        'Ownable: caller is not the owner',
+      );
+    });
+    it('emits DestinationTokenAllowed event when new token is added', async () => {
+      const { limitSwapper, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.addAllowedDestinationToken(mockUsdt.address)).to.emit(
+        limitSwapper,
+        'DestinationTokenAllowed',
+      );
+    });
+    it('does not emit DestinationTokenAllowed event when token is already allowed', async () => {
+      const { limitSwapper, mockWeth } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.addAllowedDestinationToken(mockWeth.address)).not.to.emit(
+        limitSwapper,
+        'DestinationTokenAllowed',
+      );
+    });
+    it('adds a new token successfully', async () => {
+      const { limitSwapper, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      const tx = await limitSwapper.addAllowedDestinationToken(mockUsdt.address);
+      await tx.wait();
+      const isAllowed = await limitSwapper.isDestinationTokenAllowed(mockUsdt.address);
+      expect(isAllowed).to.be.true;
+    });
+  });
+
+  describe('Removes Allowed Source Token', function () {
+    it('reverts if not owner', async () => {
+      const { limitSwapper, signer2, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.connect(signer2).removeAllowedSourceToken(mockUsdt.address)).to.be.revertedWith(
+        'Ownable: caller is not the owner',
+      );
+    });
+    it('emits SourceTokenRemoved event when token is removed', async () => {
+      const { limitSwapper, mockUsdc } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.removeAllowedSourceToken(mockUsdc.address)).to.emit(limitSwapper, 'SourceTokenRemoved');
+    });
+    it('does not emit SourceTokenRemoved event when token was not allowed', async () => {
+      const { limitSwapper, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.removeAllowedSourceToken(mockUsdt.address)).not.to.emit(
+        limitSwapper,
+        'SourceTokenRemoved',
+      );
+    });
+    it('removes an existing token successfully', async () => {
+      const { limitSwapper, mockUsdc } = await loadFixture(deployLimitSwapperFixture);
+      let isAllowed = await limitSwapper.isSourceTokenAllowed(mockUsdc.address);
+      expect(isAllowed).to.be.true;
+      const tx = await limitSwapper.removeAllowedSourceToken(mockUsdc.address);
+      await tx.wait();
+      isAllowed = await limitSwapper.isSourceTokenAllowed(mockUsdc.address);
+      expect(isAllowed).to.be.false;
+    });
+  });
+
+  describe('Removes Allowed Destination Token', function () {
+    it('reverts if not owner', async () => {
+      const { limitSwapper, signer2, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.connect(signer2).removeAllowedDestinationToken(mockUsdt.address)).to.be.revertedWith(
+        'Ownable: caller is not the owner',
+      );
+    });
+    it('emits DestinationTokenRemoved event when token is removed', async () => {
+      const { limitSwapper, mockWeth } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.removeAllowedDestinationToken(mockWeth.address)).to.emit(
+        limitSwapper,
+        'DestinationTokenRemoved',
+      );
+    });
+    it('does not emit DestinationTokenRemoved event when token was not allowed', async () => {
+      const { limitSwapper, mockUsdt } = await loadFixture(deployLimitSwapperFixture);
+      await expect(limitSwapper.removeAllowedDestinationToken(mockUsdt.address)).not.to.emit(
+        limitSwapper,
+        'DestinationTokenRemoved',
+      );
+    });
+    it('removes an existing token successfully', async () => {
+      const { limitSwapper, mockWeth } = await loadFixture(deployLimitSwapperFixture);
+      let isAllowed = await limitSwapper.isDestinationTokenAllowed(mockWeth.address);
+      expect(isAllowed).to.be.true;
+      const tx = await limitSwapper.removeAllowedDestinationToken(mockWeth.address);
+      await tx.wait();
+      isAllowed = await limitSwapper.isDestinationTokenAllowed(mockWeth.address);
+      expect(isAllowed).to.be.false;
     });
   });
 });

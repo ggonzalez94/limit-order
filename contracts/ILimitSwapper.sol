@@ -40,6 +40,11 @@ interface ILimitSwapper {
         uint256 amountOfDestinationToken
     );
 
+    event SourceTokenAllowed(address token);
+    event DestinationTokenAllowed(address token);
+    event SourceTokenRemoved(address token);
+    event DestinationTokenRemoved(address token);
+
     error LimitSwapperInvalidSourceToken(address token);
     error LimitSwapperInvalidDestinationToken(address token);
     error LimitSwapperOrderFilled(uint256 orderId);
@@ -61,5 +66,19 @@ interface ILimitSwapper {
 
     function cancelLimitOrder(uint256 orderId) external;
 
+    function addAllowedSourceToken(address token) external;
+
+    function addAllowedDestinationToken(address token) external;
+
+    function removeAllowedSourceToken(address token) external;
+
+    function removeAllowedDestinationToken(address token) external;
+
+    function isSourceTokenAllowed(address token) external view returns (bool);
+
+    function isDestinationTokenAllowed(address token) external view returns (bool);
+
     function getOrder(uint256 orderId) external view returns (Order memory);
+
+    function getActiveOrders() external view returns (Order[] memory);
 }

@@ -6,9 +6,9 @@ import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract LimitSwapper is ILimitSwapper, Initializable {
+contract LimitSwapper is ILimitSwapper, Initializable, OwnableUpgradeable {
     using SafeERC20 for IERC20;
 
     uint24 public constant SLIPPAGE = 5; // 5%
@@ -57,6 +57,7 @@ contract LimitSwapper is ILimitSwapper, Initializable {
         SWAP_ROUTER = swapRouter;
         _swapRouter = ISwapRouter(swapRouter);
         _orderId = 0;
+        __Ownable_init();
     }
 
     function createLimitOrder(
@@ -159,6 +160,42 @@ contract LimitSwapper is ILimitSwapper, Initializable {
 
         _orders[orderId].status = Status.Canceled;
         emit OrderCanceled(orderId);
+    }
+
+    function addAllowedSourceToken(address token) external onlyOwner {
+        if (!_allowedSourceTokens[token]) {
+            _allowedSourceTokens[token] = true;
+            emit SourceTokenAllowed(token);
+        }
+    }
+
+    function addAllowedDestinationToken(address token) external onlyOwner {
+        if (!_allowedDestinationTokens[token]) {
+            _allowedDestinationTokens[token] = true;
+            emit DestinationTokenAllowed(token);
+        }
+    }
+
+    function removeAllowedSourceToken(address token) external onlyOwner {
+        if (_allowedSourceTokens[token]) {
+            _allowedSourceTokens[token] = false;
+            emit SourceTokenRemoved(token);
+        }
+    }
+
+    function removeAllowedDestinationToken(address token) external onlyOwner {
+        if (_allowedDestinationTokens[token]) {
+            _allowedDestinationTokens[token] = false;
+            emit DestinationTokenRemoved(token);
+        }
+    }
+
+    function isSourceTokenAllowed(address token) external view returns (bool) {
+        return _allowedSourceTokens[token];
+    }
+
+    function isDestinationTokenAllowed(address token) external view returns (bool) {
+        return _allowedDestinationTokens[token];
     }
 
     function getOrder(uint256 orderId) external view returns (Order memory) {
