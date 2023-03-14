@@ -5,6 +5,9 @@
     "main": "index.js",
     "author": "Gustavo Gonzalez",
     "license": "MIT",
+    "scripts": {
+        "build": "rollup --config defender/rollup.config.mjs"
+    },
     "devDependencies": {
         "@ethereum-waffle/mock-contract": "^4.0.4",
         "@ethersproject/abi": "^5.7.0",
@@ -32,7 +35,9 @@
         "@uniswap/v3-core": "^1.0.1",
         "@uniswap/v3-periphery": "^1.4.3",
         "chai": "^4.3.7",
+        "defender-autotask-utils": "^1.39.0",
         "defender-serverless": "1.0.3",
+        "dotenv": "^16.0.3",
         "eslint": "^8.31.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-promise": "^6.1.1",
@@ -55,6 +60,11 @@
         "solidity-docgen": "^0.6.0-beta.34",
         "ts-node": "^10.9.1",
         "typechain": "^8.1.1",
-        "typescript": "^4.9.4"
+        "typescript": "^4.9.4",
+        "@rollup/plugin-commonjs": "^24.0.0",
+        "@rollup/plugin-json": "^6.0.0",
+        "@rollup/plugin-node-resolve": "^15.0.1",
+        "@rollup/plugin-typescript": "^11.0.0",
+        "rollup": "^3.10.0"
     }
 }

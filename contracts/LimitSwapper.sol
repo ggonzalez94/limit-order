@@ -3,14 +3,10 @@ pragma solidity ^0.8.18;
 
 import "./ILimitSwapper.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
 contract LimitSwapper is ILimitSwapper, Initializable, OwnableUpgradeable {
-    using SafeERC20 for IERC20;
-
     uint24 public constant SLIPPAGE = 5; // 5%
     uint24 private constant FEE = 3000; //TODO: Get pool dinamically
     address public SWAP_ROUTER;
@@ -75,8 +71,6 @@ contract LimitSwapper is ILimitSwapper, Initializable, OwnableUpgradeable {
         if (!_allowedDestinationTokens[destinationToken]) {
             revert LimitSwapperInvalidDestinationToken(destinationToken);
         }
-
-        // validate that an order with the same id doesn't exist?
 
         // register the order
         uint256 currentOrderId = _orderId;

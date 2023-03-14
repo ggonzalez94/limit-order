@@ -1,0 +1,46 @@
+service: on-chain-limit-orders
+configValidationMode: error
+frameworkVersion: "3"
+
+provider:
+  name: defender
+  stage: ${opt:stage, 'goerli'}
+  stackName: "${self:provider.stage}LimitSwapper" # prepend stage name to be able to replicate between environments(e.g. goerliLimitSwapper)
+  ssot: false
+
+custom:
+  secrets: ${file(./secrets.${self:provider.stage}.yml)}
+  config: ${file(./config.${self:provider.stage}.yml)}
+
+defender:
+  key: ${self:custom.secrets.keys.defender-api-key}
+  secret: ${self:custom.secrets.keys.defender-api-secret}
+
+functions:
+  execute:
+    name: "Execute limit order"
+    path: "./autotasks/execute/dist"
+    trigger:
+      type: "webhook"
+    paused: false
+
+resources:
+  Resources:
+    policies:
+      policy-1:
+        eip1559-pricing: true
+
+    relayers:
+      relayer-1:
+        name: "Execute Limit Order Relayer"
+        network: "${self:custom.config.network}"
+        min-balance: 1000
+        policy: ${self:resources.Resources.policies.policy-1}
+
+    secrets:
+      #stack secrets (formatted as <stackname>_<secretkey>)
+      stack:
+        limitSwapperAddress: ${self:custom.config.limitSwapperAddress}
+
+plugins:
+  - defender-serverless
