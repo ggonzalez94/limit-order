@@ -409,6 +409,50 @@ describe('LimitSwapper', function () {
       expect(isAllowed).to.be.false;
     });
   });
+
+  describe('Get Active orders', function () {
+    it('returns one order after adding it', async () => {
+      const { limitSwapper, signer1, mockUsdc, mockWeth } = await loadFixture(deployLimitSwapperFixture);
+      const inputAmount = ethers.utils.parseUnits('100', 6);
+
+      const tx = await limitSwapper.createLimitOrder(
+        mockUsdc.address,
+        mockWeth.address,
+        signer1.address,
+        inputAmount,
+        1600,
+      );
+      await tx.wait();
+
+      const orders = await limitSwapper.getActiveOrders();
+      expect(orders.length).to.equal(1);
+    });
+
+    it('returns only active orders', async () => {
+      const { limitSwapper, signer1, mockUsdc, mockWeth } = await loadFixture(deployLimitSwapperFixture);
+      const inputAmount = ethers.utils.parseUnits('100', 6);
+
+      let tx = await limitSwapper.createLimitOrder(
+        mockUsdc.address,
+        mockWeth.address,
+        signer1.address,
+        inputAmount,
+        1600,
+      );
+      await tx.wait();
+
+      tx = await limitSwapper.createLimitOrder(mockUsdc.address, mockWeth.address, signer1.address, inputAmount, 1600);
+      await tx.wait();
+
+      tx = await limitSwapper.createLimitOrder(mockUsdc.address, mockWeth.address, signer1.address, inputAmount, 1600);
+      await tx.wait();
+
+      tx = await limitSwapper.cancelLimitOrder(1);
+
+      const orders = await limitSwapper.getActiveOrders();
+      expect(orders.length).to.equal(2);
+    });
+  });
 });
 
 const createOrder = async (
