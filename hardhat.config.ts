@@ -2,6 +2,7 @@ import '@nomicfoundation/hardhat-toolbox';
 import 'hardhat-contract-sizer';
 import '@openzeppelin/hardhat-upgrades';
 import * as dotenv from 'dotenv';
+import './tasks/createOrder';
 
 dotenv.config();
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || 'https://eth-goerli.alchemyapi.io/v2/your-api-key';
@@ -54,7 +55,7 @@ export default {
   },
   gasReporter: {
     currency: 'USD',
-    enabled: process.env.REPORT_GAS,
+    enabled: false,
     outputFile: process.env.REPORT_GAS_PATH,
     coinmarketcap: process.env.COINMARKETCAP_KEY,
   },

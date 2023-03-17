@@ -18,7 +18,12 @@ const config = [
       file: path.resolve(__dirname, 'autotasks/execute/dist/index.js'),
       format: 'cjs',
     },
-    plugins: [typescript(), resolve({ preferBuiltins: true }), commonjs(), json({ compact: true })],
+    plugins: [
+      typescript({ resolveJsonModule: true }),
+      resolve({ preferBuiltins: true }),
+      commonjs(),
+      json({ compact: true }),
+    ],
     external: [...builtins, 'ethers', 'web3', 'axios', /^defender-relay-client(\/.*)?$/],
   },
 ];

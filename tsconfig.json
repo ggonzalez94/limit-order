@@ -1,5 +1,5 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
-  "include": ["defender/autotasks/**/*", "test/**/*"],
+  "include": ["defender/autotasks/**/*"],
   "exclude": ["node_modules"]
 }

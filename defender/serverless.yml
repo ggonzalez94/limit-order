@@ -20,8 +20,10 @@ functions:
   execute:
     name: "Execute limit order"
     path: "./autotasks/execute/dist"
+    relayer: ${self:resources.Resources.relayers.relayer-1}
     trigger:
-      type: "webhook"
+      type: "schedule"
+      frequency: 1 # Trigger every 60 seconds so we don't exhaust our autotask quota
     paused: false
 
 resources:
