@@ -136,8 +136,12 @@ contract LimitSwapper is ILimitSwapper, Initializable, OwnableUpgradeable {
     function executeLimitOrder(uint256 orderId) external orderExists(orderId) isActive(orderId) returns (uint256) {
         // retrieve limit order
         Order memory order = _orders[orderId];
+        //Set the status of the order as Filled and emit an event
+        _orders[orderId].status = Status.Filled;
+
         ERC20 sourceToken = ERC20(order.sourceToken);
         // Transfer source token from the maker to this contract(previous approval must exist)
+        // slither-disable-next-line arbitrary-send-erc20
         bool success = sourceToken.transferFrom(order.maker, address(this), order.amountOfSourceToken);
         if (!success) {
             revert LimitSwapperERC20TransferFromFailed();
@@ -164,8 +168,6 @@ contract LimitSwapper is ILimitSwapper, Initializable, OwnableUpgradeable {
         });
         uint256 amountOut = _swapRouter.exactInputSingle(params);
 
-        //Set the status of the order as Filled and emit an event
-        _orders[orderId].status = Status.Filled;
         emit OrderFilled(
             orderId,
             order.sourceToken,
