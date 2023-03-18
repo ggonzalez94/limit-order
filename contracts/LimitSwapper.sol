@@ -16,7 +16,7 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 contract LimitSwapper is ILimitSwapper, Initializable, OwnableUpgradeable {
     uint24 public constant SLIPPAGE = 5; // 5%
     ISwapRouter private _swapRouter;
-    uint24 private constant FEE = 3000; //TODO: Get pool dinamically
+    uint24 private constant FEE = 500; // Use 0.05% pool fee which is available for USDC/WETH and USDT/WETH. Next version of the protocol might include the ability to pass dynamic pool fees.
     uint256 private _orderId;
     mapping(uint256 orderId => Order order) private _orders;
     mapping(address token => bool allowed) private _allowedSourceTokens;
