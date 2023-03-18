@@ -1,0 +1,201 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x295DaD63c18296B69D3ced2788059F2970a4a632",
+    "txHash": "0x3e8c5ac84ff27db07d751e1b765ec1b7794dc451606a4a0e09accd4ba6f56813"
+  },
+  "proxies": [
+    {
+      "address": "0xb59BE49E1c194373717Ab1d8C183B747829dD28f",
+      "txHash": "0xba3e8ae7e893df20404c22b89ce9a18217e4c6133e9c41b2e1ee77f9cb673f32",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "0c25954fe7a76990f3a695bf4f3db5ad73c69d0c06b486e53f70eaafd44313bf": {
+      "address": "0xd3a162C0459Ee5591DaA20Cfd154FffDC4E1f9C8",
+      "txHash": "0x52568fd3023316868418c4a2c5ae34c59bd039ede5f4348e9541cf62ce505d0d",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "_swapRouter",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_contract(ISwapRouter)1452",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:18"
+          },
+          {
+            "label": "_orderId",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_uint256",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:20"
+          },
+          {
+            "label": "_orders",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_mapping(t_uint256,t_struct(Order)1474_storage)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:21"
+          },
+          {
+            "label": "_allowedSourceTokens",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:22"
+          },
+          {
+            "label": "_allowedDestinationTokens",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:23"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(ISwapRouter)1452": {
+            "label": "contract ISwapRouter",
+            "numberOfBytes": "20"
+          },
+          "t_enum(Status)1458": {
+            "label": "enum Status",
+            "members": [
+              "Active",
+              "Filled",
+              "Canceled"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Order)1474_storage)": {
+            "label": "mapping(uint256 => struct Order)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Order)1474_storage": {
+            "label": "struct Order",
+            "members": [
+              {
+                "label": "status",
+                "type": "t_enum(Status)1458",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "sourceToken",
+                "type": "t_address",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "destinationToken",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "maker",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "receiver",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "amountOfSourceToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "amountOfDestinationToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,787 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x15199E929379ACb4FF0a96475e3E1908c0819058",
+    "txHash": "0x6c2c1958fb59c517550c318eefd195a1b15456ac508ff6357adea2d15f0279ce"
+  },
+  "proxies": [
+    {
+      "address": "0x277758cEd66785ee2f425C6139b2d1926D34C305",
+      "txHash": "0xc7e51f9467db2cb8460b2dee17b22cba252844e355ab118c20559c879e07261b",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x1E64D90e0F196B66BdEA769da8bFa6b27326BF87",
+      "txHash": "0x3db9a974f2f6ba0b754676ae154ecc48920d30678897f26a962eccf6c04fe262",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x01693AcF6bbb945Ab57Eb815021B054D2137800D",
+      "txHash": "0x05f9003d8848903e922d997528a11c8887d64097e60ffefbefc6e7ad8a12bfe3",
+      "kind": "transparent"
+    },
+    {
+      "address": "0xb15f0A77e20f4F3762F15a6075a8FC704Ed04C91",
+      "txHash": "0x36f6811ab7f9197d1d0f16df6722afdac86a3e84faed19ff985fa42de572bbd9",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "000ad97b24c7910b19ec07ef76818fab02d42785bb03a54b0ff8cd2ef8d76722": {
+      "address": "0x17295ff8df75CA7daF3f19E5eC40ee5FE4059664",
+      "txHash": "0x88f7c2570d6807c01b07d28785327e664123e8e4a29a4b67490f3afd75e55407",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "SWAP_ROUTER",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_address",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:16"
+          },
+          {
+            "label": "_swapRouter",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_contract(ISwapRouter)2099",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:17"
+          },
+          {
+            "label": "_orderId",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_uint256",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:19"
+          },
+          {
+            "label": "_orders",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_mapping(t_uint256,t_struct(Order)2121_storage)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:20"
+          },
+          {
+            "label": "_allowedSourceTokens",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:21"
+          },
+          {
+            "label": "_allowedDestinationTokens",
+            "offset": 0,
+            "slot": "106",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:22"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(ISwapRouter)2099": {
+            "label": "contract ISwapRouter",
+            "numberOfBytes": "20"
+          },
+          "t_enum(Status)2105": {
+            "label": "enum Status",
+            "members": [
+              "Active",
+              "Filled",
+              "Canceled"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Order)2121_storage)": {
+            "label": "mapping(uint256 => struct Order)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Order)2121_storage": {
+            "label": "struct Order",
+            "members": [
+              {
+                "label": "status",
+                "type": "t_enum(Status)2105",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "sourceToken",
+                "type": "t_address",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "destinationToken",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "maker",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "receiver",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "amountOfSourceToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "amountOfDestinationToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "9d305bacfe0c87da8db66c81b9ca676f9f6414a0047f0effbf9ec621e59c90c2": {
+      "address": "0x9187990dc832F70d1cD77857a7880bd5f54f6731",
+      "txHash": "0x7dd95bab0455457f6fb4b4f8024cc13301cd062124f9a67d7bdd1cc2a90e6d46",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "SWAP_ROUTER",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_address",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:12"
+          },
+          {
+            "label": "_swapRouter",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_contract(ISwapRouter)1452",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:13"
+          },
+          {
+            "label": "_orderId",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_uint256",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:15"
+          },
+          {
+            "label": "_orders",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_mapping(t_uint256,t_struct(Order)1474_storage)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:16"
+          },
+          {
+            "label": "_allowedSourceTokens",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:17"
+          },
+          {
+            "label": "_allowedDestinationTokens",
+            "offset": 0,
+            "slot": "106",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:18"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(ISwapRouter)1452": {
+            "label": "contract ISwapRouter",
+            "numberOfBytes": "20"
+          },
+          "t_enum(Status)1458": {
+            "label": "enum Status",
+            "members": [
+              "Active",
+              "Filled",
+              "Canceled"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Order)1474_storage)": {
+            "label": "mapping(uint256 => struct Order)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Order)1474_storage": {
+            "label": "struct Order",
+            "members": [
+              {
+                "label": "status",
+                "type": "t_enum(Status)1458",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "sourceToken",
+                "type": "t_address",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "destinationToken",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "maker",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "receiver",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "amountOfSourceToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "amountOfDestinationToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "60b15057b9ca63c65e0c7eee3f4c5456cf109483a873936354700faca5e5fcc5": {
+      "address": "0xDddfccB68a7b64Fe4DBC50e2176805D100828753",
+      "txHash": "0x1c9ccd18ef9568bd34d04469518628cae762e0c4cef1b7c5c056478c38439bb0",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "_swapRouter",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_contract(ISwapRouter)1452",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:18"
+          },
+          {
+            "label": "_orderId",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_uint256",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:20"
+          },
+          {
+            "label": "_orders",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_mapping(t_uint256,t_struct(Order)1474_storage)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:21"
+          },
+          {
+            "label": "_allowedSourceTokens",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:22"
+          },
+          {
+            "label": "_allowedDestinationTokens",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:23"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(ISwapRouter)1452": {
+            "label": "contract ISwapRouter",
+            "numberOfBytes": "20"
+          },
+          "t_enum(Status)1458": {
+            "label": "enum Status",
+            "members": [
+              "Active",
+              "Filled",
+              "Canceled"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Order)1474_storage)": {
+            "label": "mapping(uint256 => struct Order)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Order)1474_storage": {
+            "label": "struct Order",
+            "members": [
+              {
+                "label": "status",
+                "type": "t_enum(Status)1458",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "sourceToken",
+                "type": "t_address",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "destinationToken",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "maker",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "receiver",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "amountOfSourceToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "amountOfDestinationToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "0c25954fe7a76990f3a695bf4f3db5ad73c69d0c06b486e53f70eaafd44313bf": {
+      "address": "0xfAEBd75CbCc7bf9772c18F290b04414eB4Cb8f53",
+      "txHash": "0x274f3674a552f6b3325daf0839b5ddfad8749508cea2ad7b7ebdb4df15f86a1b",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "_swapRouter",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_contract(ISwapRouter)1452",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:18"
+          },
+          {
+            "label": "_orderId",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_uint256",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:20"
+          },
+          {
+            "label": "_orders",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_mapping(t_uint256,t_struct(Order)1474_storage)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:21"
+          },
+          {
+            "label": "_allowedSourceTokens",
+            "offset": 0,
+            "slot": "104",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:22"
+          },
+          {
+            "label": "_allowedDestinationTokens",
+            "offset": 0,
+            "slot": "105",
+            "type": "t_mapping(t_address,t_bool)",
+            "contract": "LimitSwapper",
+            "src": "contracts/LimitSwapper.sol:23"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(ISwapRouter)1452": {
+            "label": "contract ISwapRouter",
+            "numberOfBytes": "20"
+          },
+          "t_enum(Status)1458": {
+            "label": "enum Status",
+            "members": [
+              "Active",
+              "Filled",
+              "Canceled"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_uint256,t_struct(Order)1474_storage)": {
+            "label": "mapping(uint256 => struct Order)",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Order)1474_storage": {
+            "label": "struct Order",
+            "members": [
+              {
+                "label": "status",
+                "type": "t_enum(Status)1458",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "sourceToken",
+                "type": "t_address",
+                "offset": 1,
+                "slot": "0"
+              },
+              {
+                "label": "destinationToken",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "maker",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "receiver",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "amountOfSourceToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "amountOfDestinationToken",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    }
+  }
+}

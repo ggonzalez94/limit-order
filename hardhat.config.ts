@@ -6,10 +6,11 @@ import './tasks/createOrder';
 
 dotenv.config();
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || 'https://eth-goerli.alchemyapi.io/v2/your-api-key';
-const ARBITRUM_RPC_URL = process.env.GOERLI_RPC_URL || 'https://eth-arbitrum.alchemyapi.io/v2/your-api-key';
+const ARBITRUM_RPC_URL = process.env.ARBITRUM_RPC_URL || 'https://eth-arbitrum.alchemyapi.io/v2/your-api-key';
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 // Your API key for Etherscan, obtain one at https://etherscan.io/
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || 'Your etherscan API key';
+const ARBSCAN_API_KEY = process.env.ARBSCAN_API_KEY || 'Your arbscan API key';
 
 export default {
   networks: {
@@ -32,7 +33,7 @@ export default {
     // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
     apiKey: {
       goerli: ETHERSCAN_API_KEY,
-      arbitrum: ETHERSCAN_API_KEY,
+      arbitrumOne: ARBSCAN_API_KEY,
     },
   },
   paths: {
