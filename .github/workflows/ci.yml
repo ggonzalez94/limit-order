@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
@@ -17,3 +17,14 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Run Hardhat Tests
         run: yarn hardhat test
+
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Run Slither
+        uses: crytic/slither-action@v0.3.0
+        with:
+          fail-on: medium
+          slither-args: --exclude-dependencies
