@@ -16,6 +16,7 @@ export async function handler(event: AutotaskEvent) {
   const provider = new DefenderRelayProvider(event as any);
   const signer = new DefenderRelaySigner(event as any, provider, { speed: 'fast' });
   const network = (await provider.detectNetwork()).name; //Verify what gets returned in arbitrum
+  console.log(`Runing on network: ${network}`);
   const { secrets } = event;
   const limitSwaperAddress = secrets[`${network}${STACK_NAME}_limitSwapperAddress`];
   if (limitSwaperAddress === undefined) {
