@@ -13,7 +13,7 @@ The protocol is deployed on Arbitrum One, a Layer 2 scaling solution for Ethereu
 | ------------- | -------------------------------------------------- |
 | LimitSwapper  | `0xb59BE49E1c194373717Ab1d8C183B747829dD28f` |
 
-
+> ⚠️ The code in this repo has not been audited. Please use at your own risk. 
 
 ---
 ## Test :test_tube:
