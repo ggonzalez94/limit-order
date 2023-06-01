@@ -1,0 +1,32 @@
+name: Deploy Serverless
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Change to defender directory
+        run: cd defender
+
+      - name: Install serverless globally
+        run: npm install -g serverless
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Deploy to Arbitrum
+        env:
+          DEFENDER_API_KEY: ${{ secrets.DEFENDER_API_KEY }}
+          DEFENDER_API_SECRET: ${{ secrets.DEFENDER_API_SECRET }}
+        run: serverless deploy --stage arbitrum

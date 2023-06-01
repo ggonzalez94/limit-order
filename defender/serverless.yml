@@ -1,11 +1,11 @@
 service: on-chain-limit-orders
 configValidationMode: error
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 provider:
   name: defender
   stage: ${opt:stage, 'goerli'}
-  stackName: "${self:provider.stage}LimitSwapper" # prepend stage name to be able to replicate between environments(e.g. goerliLimitSwapper)
+  stackName: '${self:provider.stage}LimitSwapper' # prepend stage name to be able to replicate between environments(e.g. goerliLimitSwapper)
   ssot: false
 
 custom:
@@ -13,16 +13,16 @@ custom:
   config: ${file(./config.${self:provider.stage}.yml)}
 
 defender:
-  key: ${self:custom.secrets.keys.defender-api-key}
-  secret: ${self:custom.secrets.keys.defender-api-secret}
+  key: ${env:DEFENDER_API_KEY}
+  secret: ${env:DEFENDER_API_SECRET}
 
 functions:
   execute:
-    name: "Execute limit order"
-    path: "./autotasks/execute/dist"
+    name: 'Execute limit order'
+    path: './autotasks/execute/dist'
     relayer: ${self:resources.Resources.relayers.relayer-1}
     trigger:
-      type: "schedule"
+      type: 'schedule'
       frequency: 1 # Trigger every 60 seconds so we don't exhaust our autotask quota
     paused: false
 
@@ -34,8 +34,8 @@ resources:
 
     relayers:
       relayer-1:
-        name: "Execute Limit Order Relayer"
-        network: "${self:custom.config.network}"
+        name: 'Execute Limit Order Relayer'
+        network: '${self:custom.config.network}'
         min-balance: 1000
         policy: ${self:resources.Resources.policies.policy-1}
 
