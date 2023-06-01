@@ -16,17 +16,16 @@ jobs:
         with:
           node-version: 16
 
-      - name: Change to defender directory
-        run: cd defender
-
       - name: Install serverless globally
         run: npm install -g serverless
 
       - name: Install dependencies
         run: yarn install
+        working-directory: defender
 
-      - name: Deploy to Arbitrum
+      - name: Deploy to Defender
         env:
           DEFENDER_API_KEY: ${{ secrets.DEFENDER_API_KEY }}
           DEFENDER_API_SECRET: ${{ secrets.DEFENDER_API_SECRET }}
         run: serverless deploy --stage arbitrum
+        working-directory: defender
