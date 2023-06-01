@@ -9,7 +9,7 @@ provider:
   ssot: false
 
 custom:
-  secrets: ${file(./secrets.${self:provider.stage}.yml)}
+  # secrets: ${file(./secrets.${self:provider.stage}.yml)}
   config: ${file(./config.${self:provider.stage}.yml)}
 
 defender:
