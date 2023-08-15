@@ -2,7 +2,7 @@
 
 Introducing LimitSwapper - a protocol that enables users to execute swaps on Uniswap through limit orders placed directly on the blockchain. With access to Uniswap's deep liquidity pool, users can enjoy the best available price with minimal slippage.
 
-To use LimitSwapper, simply submit a limit order to the smart contract, specifying the desired token pair and threshold price. The protocol automatically monitors the market and executes the trade when the price is below the specified threshold. It's important to note that your funds are never held by the smart contract, as you only register your order for execution. **Be sure to approve tokens to the LimitSwapper smart contract to avoid execution failures**.
+To use LimitSwapper, simply submit a limit order to the smart contract, specifying the desired token pair and threshold price. The protocol automatically monitors the market and executes the trade when the price is below the specified threshold. It's important to note that your funds are never held by the smart contract, as you only register your order for execution. **Be sure to approve tokens to the LimitSwapper smart contract to avoid execution failures**..
 
 Market prices are monitored off-chain using [Defender Autotasks](https://docs.openzeppelin.com/defender/autotasks) and executed securely via a [Relayer](https://docs.openzeppelin.com/defender/relay). The Autotask runs every minute and identifies orders that are ready for execution, which are then executed automatically. Currently, gas fees are subsidized by the Relayer, but a mechanism that forces users to pay for their gas along with a protocol fee may be added in the future. 
 
