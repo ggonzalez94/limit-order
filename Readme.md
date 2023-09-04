@@ -1,6 +1,6 @@
 # On Chain Limit Orders :chains:
 
-Introducing LimitSwapper - a protocol that enables users to execute swaps on Uniswap through limit orders placed directly on the blockchain. With access to Uniswap's deep liquidity pool, users can enjoy the best available price with minimal slippage.
+Introducing LimitSwapper - a protocol that enables users to execute swaps on Uniswap through limit orders placed directly on the blockchain. With access to Uniswap's deep liquidity pool, users can enjoy the best available price with minimal slippage
 
 To use LimitSwapper, simply submit a limit order to the smart contract, specifying the desired token pair and threshold price. The protocol automatically monitors the market and executes the trade when the price is below the specified threshold. It's important to note that your funds are never held by the smart contract, as you only register your order for execution. **Be sure to approve tokens to the LimitSwapper smart contract to avoid execution failures**..
 
